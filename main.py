@@ -4,7 +4,7 @@ def adicionar_contato():
     print("\n===== Adicionar Contato =====")
     nome = input("Digite o nome: ")
     telefone = input("Digite o telefone: ")
-    email = input("Digite o email: ")
+    email = input("Digite o e-mail: ")
     
     contato = {
         "nome": nome,
@@ -28,6 +28,41 @@ def listar_contatos():
         favorito = "★" if contato["favorito"] else " "
         
         print(f"{indice}. [{favorito}] Nome: {contato['nome']} Telefone: {contato['telefone']} E-mail: {contato['email']}")
+        
+def editar_contato():
+    print("\n===== Editar Contato =====")
+    
+    if not contatos:
+        print("Nenhum contato encontrado")
+        return
+    
+    listar_contatos()
+    
+    try:
+        indice = int(input("\nDigite o número do contato que deseja editar: ")) - 1
+        
+        if indice < 0 or indice >= len(contatos):
+            print("Contato inválido.")
+            return
+        
+        contato = contatos[indice]
+        
+        novo_nome = input(f"Novo nome ({contato['nome']}): ")
+        if novo_nome:
+            contato["nome"] = novo_nome
+            
+        novo_telefone = input(f"Novo telefone ({contato['telefone']}): ")
+        if novo_telefone:
+            contato["telefone"] = novo_telefone
+            
+        novo_email = input(f"Novo e-mail ({contato['email']}): ")
+        if novo_email:
+            contato["email"] = novo_email
+        
+        print("\nContato atualizado com sucesso!")
+        
+    except ValueError:
+        print("Digite um número válido.")
 
 def main():
     while True:
@@ -49,7 +84,7 @@ def main():
             listar_contatos()
             
         elif opcao == "3":
-            print("\nFunção de editar contato em breve...")
+            editar_contato()
             
         elif opcao == "4":
             print("\nFunção de marcar/desmarcar contatos favoritos em breve...")
