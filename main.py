@@ -94,6 +94,30 @@ def favoritar_contato():
         
     except ValueError:
         print("Digite um número válido.")
+        
+def listar_contatos_favoritos():
+    print("\n===== Contatos Favoritos =====")
+    
+    if not contatos:
+        print("Nenhum contato encontrado")
+        return
+    
+    possui_favoritos = False
+    
+    for indice, contato in enumerate(contatos, start = 1):
+        if contato["favorito"]:
+            possui_favoritos = True
+
+            print(
+                f"{indice}. [★] "
+                f"Nome: {contato['nome']} | "
+                f"Telefone: {contato['telefone']} | "
+                f"E-mail: {contato['email']}"
+            )
+        
+        if not possui_favoritos:
+            print("Nenhum contato favorito encontrado.")
+            
 
 def main():
     while True:
@@ -121,7 +145,7 @@ def main():
             favoritar_contato()
             
         elif opcao == "5":
-            print("\nFunção de listar contatos favoritos em breve...")
+            listar_contatos_favoritos()
             
         elif opcao == "6":
             print("\nFunção de deletar contato em breve...")
