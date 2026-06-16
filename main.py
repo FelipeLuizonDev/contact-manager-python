@@ -3,7 +3,7 @@ contatos = []
 def adicionar_contato():
     print("\n===== Adicionar Contato =====")
     nome = input("Digite o nome: ")
-    telefone = input("Digite o telefone")
+    telefone = input("Digite o telefone: ")
     email = input("Digite o email: ")
     
     contato = {
@@ -16,6 +16,18 @@ def adicionar_contato():
     contatos.append(contato)
     
     print(f"\nContato '{nome}' adicionado com sucesso!")
+
+def listar_contatos():
+    print("\n===== Lista de Contatos =====")
+    
+    if not contatos:
+        print("Nenhum contato encontrado")
+        return
+    
+    for indice, contato in enumerate(contatos, start=1):
+        favorito = "★" if contato["favorito"] else " "
+        
+        print(f"{indice}. [{favorito}] Nome: {contato['nome']} Telefone: {contato['telefone']} E-mail: {contato['email']}")
 
 def main():
     while True:
@@ -34,7 +46,7 @@ def main():
             adicionar_contato()
             
         elif opcao == "2":
-            print("\nFunção de listar contatos em breve...")
+            listar_contatos()
             
         elif opcao == "3":
             print("\nFunção de editar contato em breve...")
@@ -54,5 +66,6 @@ def main():
         
         else:
             print("\nOpção inválida. Por favor, tente novamente.")
+
             
 main()
