@@ -118,6 +118,29 @@ def listar_contatos_favoritos():
         if not possui_favoritos:
             print("Nenhum contato favorito encontrado.")
             
+def apagar_contato():
+    print("\n===== Apagar Contato =====")
+    
+    if not contatos:
+        print("Nenhum contato encontrado")
+        return
+    
+    listar_contatos()
+    
+    try:
+        indice = int(input("\nDigite o número do contato que deseja apagar: ")) - 1
+        
+        if indice < 0 or indice >= len(contatos):
+            print("Contato inválido.")
+            return
+        
+        contato_removido = contatos.pop(indice)
+        
+        print(f"Contato '{contato_removido['nome']} removido com sucesso!'")
+        
+    except ValueError:
+        print("Digite um número válido.")
+            
 
 def main():
     while True:
@@ -148,7 +171,7 @@ def main():
             listar_contatos_favoritos()
             
         elif opcao == "6":
-            print("\nFunção de deletar contato em breve...")
+            apagar_contato()
             
         elif opcao == "0":
             print("\nEncerrando programa...")
